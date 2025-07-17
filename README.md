@@ -1,9 +1,24 @@
 # Aire Logic Tech Test Portal
 
-Aire Logic tech tests for development candidates
+Completed by Sam Brereton
 
-## Instructions
+## Overview
 
+This repository started as a fork of the airelogic/tech-test-portal.
+
+At the root of the repository is a Visual Studio solution file, TechTestPortal.sln which provides a solution for the Patient Appointment Backend task.
+
+Solution Contents:
+
+ - [PatientAppointmentBackend.Service](/Patient-Appointment-Backend/src/PatientAppointmentBackend.Service) .NET 8 Web Api Service
+ - [PatientAppointmentBackend.Shared](/Patient-Appointment-Backend/src/PatientAppointmentBackend.Shared) .NET 8 class library 
+ - [PatientAppointmentBackend.Data](/Patient-Appointment-Backend/src/PatientAppointmentBackend.Data) .NET 8 class library with Entity Framework models, Database context and Migrations.
+ - [PatientAppointmentBackend.Tests](/Patient-Appointment-Backend/test/PatientAppointmentBackend.Tests) Unit Tests
+
+## Development Notes
+
+
+ 
 If you're looking to join the growing team of talented individuals at Aire Logic you might have been asked to complete a technical test. The tech test is a chance for you to display you technical knowledge and show off best software engineering practice. At Aire Logic we work with a wide range of programming languages, technologies, frameworks and different types of software systems and so we understand that engineers often have particular areas of expertise. To cater for this wide array of possible skills we provide a number of different technical tests, we encourage candidates to find one that interests and suits their individual skill set (we may occaisionally suggest one, if we think it is appropriate). The general process for completing the tech test is the same for each test
 
 - Read through the available tests and choose one that appeals to you
