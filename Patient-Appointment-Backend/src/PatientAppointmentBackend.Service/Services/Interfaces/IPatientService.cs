@@ -23,7 +23,7 @@ namespace PatientAppointmentBackend.Service.Services.Interfaces
         /// <param name="nhsNumber"></param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
-        Task<PatientModel> GetPatientAsync(string nhsNumber, CancellationToken cancellationToken);
+        Task<PatientModel?> GetPatientAsync(string nhsNumber, CancellationToken cancellationToken);
 
     }
 }

@@ -4,6 +4,14 @@
         <name>PatientAppointmentBackend.Service</name>
     </assembly>
     <members>
+        <member name="M:PatientAppointmentBackend.Service.Controllers.AppointmentController.CreateAppointment(PatientAppointmentBackend.Service.Models.NewAppointment,System.Threading.CancellationToken)">
+            <summary>
+            Create a new Appointment record
+            </summary>
+            <param name="request"></param>
+            <param name="cancellationToken"></param>
+            <returns>Appointment ID</returns>
+        </member>
         <member name="T:PatientAppointmentBackend.Service.Controllers.PatientController">
             <summary>
             Create and Update Patient information
@@ -13,7 +21,7 @@
             <summary>
             Query a Patient's record
             </summary>
-            <param name="id">the NhsNumber of the patient to query</param>
+            <param name="id" example="1373645350">the NhsNumber of the patient to query</param>
             <param name="cancellationToken"></param>
             <returns></returns>
         </member>
@@ -32,6 +40,42 @@
             <param name="request"></param>
             <param name="cancellationToken"></param>
             <returns></returns>
+        </member>
+        <member name="P:PatientAppointmentBackend.Service.Models.NewAppointment.Patient">
+            <summary>
+            The Patient's Nhs Number
+            </summary>
+            <example>1373645350</example>
+        </member>
+        <member name="P:PatientAppointmentBackend.Service.Models.NewAppointment.Time">
+            <summary>
+            The start time of the appointment
+            </summary>
+            <example>2025-08-10T11:30:00+00:00</example>
+        </member>
+        <member name="P:PatientAppointmentBackend.Service.Models.NewAppointment.Duration">
+            <summary>
+            The duration (minutes) in the form 15m
+            </summary>
+            <example>15m</example>
+        </member>
+        <member name="P:PatientAppointmentBackend.Service.Models.NewAppointment.Clinician">
+            <summary>
+            Name of Clinician
+            </summary>
+            <example>Dr Smith</example>
+        </member>
+        <member name="P:PatientAppointmentBackend.Service.Models.NewAppointment.Department">
+            <summary>
+            The Department
+            </summary>
+            <example>Oncology</example>
+        </member>
+        <member name="P:PatientAppointmentBackend.Service.Models.NewAppointment.Postcode">
+            <summary>
+            The Department's Postcode
+            </summary>
+            <example>LS20 8AX</example>
         </member>
         <member name="T:PatientAppointmentBackend.Service.Models.NewPatient">
             <summary>
@@ -56,11 +100,33 @@
             </summary>
             <example>2075-05-22T00:00:00+00:00</example>
         </member>
-        <member name="P:PatientAppointmentBackend.Service.Models.NewPatient.PostCode">
+        <member name="P:PatientAppointmentBackend.Service.Models.NewPatient.Postcode">
             <summary>
             The Patient's Postcode
             </summary>
             <example>LS20 8AX</example>
+        </member>
+        <member name="T:PatientAppointmentBackend.Service.Models.Transformers.PatientModelTransformer">
+            <summary>
+            Conversions To/From PatientModel
+            </summary>
+        </member>
+        <member name="M:PatientAppointmentBackend.Service.Models.Transformers.PatientModelTransformer.From(PatientAppointmentBackend.Data.Entities.Patient)">
+            <summary>
+            Transform Patient to PatientModel
+            </summary>
+            <param name="patient"></param>
+            <returns></returns>
+        </member>
+        <member name="T:PatientAppointmentBackend.Service.Models.Validators.AppointmentTimeValidationAttribute">
+            <summary>
+            Check that the DateTime value of an appointment is in the future
+            </summary>
+        </member>
+        <member name="T:PatientAppointmentBackend.Service.Models.Validators.DurationValidationAttribute">
+            <summary>
+            Validate the duration value
+            </summary>
         </member>
         <member name="T:PatientAppointmentBackend.Service.Models.Validators.PostCodeValidationAttribute">
             <summary>

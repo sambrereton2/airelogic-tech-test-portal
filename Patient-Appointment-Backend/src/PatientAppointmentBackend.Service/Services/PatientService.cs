@@ -2,6 +2,7 @@
 using PatientAppointmentBackend.Data.Contexts;
 using PatientAppointmentBackend.Data.Entities;
 using PatientAppointmentBackend.Service.Models;
+using PatientAppointmentBackend.Service.Models.Transformers;
 using PatientAppointmentBackend.Service.Services.Interfaces;
 using PatientAppointmentBackend.Shared.Validators;
 
@@ -83,13 +84,14 @@ namespace PatientAppointmentBackend.Service.Services
         /// <param name="nhsNumber"></param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
-        public async Task<PatientModel> GetPatientAsync(string nhsNumber, CancellationToken cancellationToken)
+        public async Task<PatientModel?> GetPatientAsync(string nhsNumber, CancellationToken cancellationToken)
         {
-            
-            return new PatientModel()
+            var patient = _context.Patients.First(x => x.NhsNumber == nhsNumber);
+            if (patient != null)
             {
-                NhsNumber = nhsNumber,
-            };
+                return PatientModelTransformer.From(patient);
+            }
+            return null;
         }
     }
 }

@@ -1,8 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using PatientAppointmentBackend.Service.Models;
 using PatientAppointmentBackend.Service.Services.Interfaces;
-using PatientAppointmentBackend.Shared.ApiModels;
 using PatientAppointmentBackend.Shared.Validators;
 
 namespace PatientAppointmentBackend.Service.Controllers
@@ -26,7 +24,7 @@ namespace PatientAppointmentBackend.Service.Controllers
         /// <summary>
         /// Query a Patient's record
         /// </summary>
-        /// <param name="id">the NhsNumber of the patient to query</param>
+        /// <param name="id" example="1373645350">the NhsNumber of the patient to query</param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
         [HttpGet]
