@@ -8,6 +8,6 @@
 
         public DateTime DateOfBirth { get; set; }
 
-        public string PostCode { get; set; }
+        public string Postcode { get; set; }
     }
 }

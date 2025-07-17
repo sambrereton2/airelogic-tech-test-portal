@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace PatientAppointmentBackend.Service
@@ -34,15 +35,11 @@ namespace PatientAppointmentBackend.Service
         /// <param name="services"></param>
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers().ConfigureApiBehaviorOptions(options => 
+            services.AddControllers().AddJsonOptions(configure => 
             {
-                // TODO - this isn't working as intended - Need to fix Global ModelState validation
-                options.InvalidModelStateResponseFactory = actionContext =>
-                {
-                    var errors = actionContext.ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage);
-                    var responseObj = new { Errors = errors };
-                    return new BadRequestObjectResult(responseObj);
-                };
+                configure.JsonSerializerOptions.WriteIndented = true;
+                configure.JsonSerializerOptions.PropertyNameCaseInsensitive = true;
+                configure.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.SnakeCaseLower;
             });
             services.AddSwaggerGen(c =>
             {

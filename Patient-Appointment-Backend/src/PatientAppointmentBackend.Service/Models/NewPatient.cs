@@ -36,6 +36,6 @@ namespace PatientAppointmentBackend.Service.Models
         /// </summary>
         /// <example>LS20 8AX</example>
         [PostCodeValidation(ErrorMessage = "Not a valid Uk Post Code")]
-        public string? PostCode { get; set; }
+        public string? Postcode { get; set; }
     }
 }

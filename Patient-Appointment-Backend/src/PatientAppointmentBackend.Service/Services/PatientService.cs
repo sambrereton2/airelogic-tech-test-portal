@@ -44,7 +44,7 @@ namespace PatientAppointmentBackend.Service.Services
                 throw new Exception("Patient already exists");
             }
 
-            PostCodeValidator.Validate(newPatient.PostCode, out string postcode);
+            PostCodeValidator.Validate(newPatient.Postcode, out string postcode);
 
             if(exists)
             {
