@@ -2,6 +2,8 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using PatientAppointmentBackend.Data.Contexts;
+using PatientAppointmentBackend.Service.Services;
+using PatientAppointmentBackend.Service.Services.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,6 +36,7 @@ namespace PatientAppointmentBackend.Service
         {
             services.AddControllers().ConfigureApiBehaviorOptions(options => 
             {
+                // TODO - this isn't working as intended - Need to fix Global ModelState validation
                 options.InvalidModelStateResponseFactory = actionContext =>
                 {
                     var errors = actionContext.ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage);
@@ -47,7 +50,7 @@ namespace PatientAppointmentBackend.Service
                 c.IncludeXmlComments(Path.Combine(System.AppContext.BaseDirectory, "SwaggerAnnotation.xml"));
             });
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlite(Configuration.GetConnectionString("PatientAppointmentDb")));
-            
+            services.AddTransient<IPatientService, PatientService>();
 
         }
 

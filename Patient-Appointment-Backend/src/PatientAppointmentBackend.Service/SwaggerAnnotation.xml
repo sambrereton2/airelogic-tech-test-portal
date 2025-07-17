@@ -9,16 +9,25 @@
             Create and Update Patient information
             </summary>
         </member>
-        <member name="M:PatientAppointmentBackend.Service.Controllers.PatientController.GetConfig(System.Threading.CancellationToken)">
+        <member name="M:PatientAppointmentBackend.Service.Controllers.PatientController.GetPatient(System.String,System.Threading.CancellationToken)">
             <summary>
-            Test Function
+            Query a Patient's record
             </summary>
+            <param name="id">the NhsNumber of the patient to query</param>
             <param name="cancellationToken"></param>
             <returns></returns>
         </member>
         <member name="M:PatientAppointmentBackend.Service.Controllers.PatientController.CreatePatient(PatientAppointmentBackend.Service.Models.NewPatient,System.Threading.CancellationToken)">
             <summary>
             Create a new Patient record
+            </summary>
+            <param name="request"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PatientAppointmentBackend.Service.Controllers.PatientController.UpdatePatient(PatientAppointmentBackend.Service.Models.NewPatient,System.Threading.CancellationToken)">
+            <summary>
+            Update a Patient's record
             </summary>
             <param name="request"></param>
             <param name="cancellationToken"></param>
@@ -62,6 +71,66 @@
             <summary>
             Default constructor
             </summary>
+        </member>
+        <member name="M:PatientAppointmentBackend.Service.Models.Validators.PostCodeValidationAttribute.IsValid(System.Object)">
+            <summary>
+            Check the postcode is valid
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="T:PatientAppointmentBackend.Service.Services.Interfaces.IPatientService">
+            <summary>
+            Implement's patient CRUD methods
+            </summary>
+        </member>
+        <member name="M:PatientAppointmentBackend.Service.Services.Interfaces.IPatientService.AddPatientAsync(PatientAppointmentBackend.Service.Models.NewPatient,System.Boolean,System.Threading.CancellationToken)">
+            <summary>
+            Add a new patient record
+            </summary>
+            <param name="newPatient"></param>
+            <param name="withUpdate">True if requesting an update</param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+            <remarks>If the patient exists, and withUpdate is false, this will throw</remarks>
+        </member>
+        <member name="M:PatientAppointmentBackend.Service.Services.Interfaces.IPatientService.GetPatientAsync(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Find a patient record by their NhsNumber
+            </summary>
+            <param name="nhsNumber"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="T:PatientAppointmentBackend.Service.Services.PatientService">
+            <summary>
+            Implements functionality to create/update/delete patients
+            </summary>
+        </member>
+        <member name="M:PatientAppointmentBackend.Service.Services.PatientService.#ctor(Microsoft.Extensions.Logging.ILogger{PatientAppointmentBackend.Service.Services.PatientService},PatientAppointmentBackend.Data.Contexts.ApplicationDbContext)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="logger"></param>
+            <param name="context"></param>
+        </member>
+        <member name="M:PatientAppointmentBackend.Service.Services.PatientService.AddPatientAsync(PatientAppointmentBackend.Service.Models.NewPatient,System.Boolean,System.Threading.CancellationToken)">
+            <summary>
+            Add or update a Patient record
+            </summary>
+            <param name="newPatient"></param>
+            <param name="withUpdate"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+            <exception cref="T:System.NotImplementedException"></exception>
+        </member>
+        <member name="M:PatientAppointmentBackend.Service.Services.PatientService.GetPatientAsync(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Find a patient record by their NhsNumber
+            </summary>
+            <param name="nhsNumber"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
         </member>
         <member name="M:PatientAppointmentBackend.Service.Startup.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
             <summary>
