@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "PatientAppointmentBackendService": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://+:63472;http://+:63473"
+    }
+  }
+}

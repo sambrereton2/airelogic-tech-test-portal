@@ -1,0 +1,80 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>PatientAppointmentBackend.Service</name>
+    </assembly>
+    <members>
+        <member name="T:PatientAppointmentBackend.Service.Controllers.PatientController">
+            <summary>
+            Create and Update Patient information
+            </summary>
+        </member>
+        <member name="M:PatientAppointmentBackend.Service.Controllers.PatientController.GetConfig(System.Threading.CancellationToken)">
+            <summary>
+            Test Function
+            </summary>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PatientAppointmentBackend.Service.Controllers.PatientController.CreatePatient(PatientAppointmentBackend.Service.Models.NewPatient,System.Threading.CancellationToken)">
+            <summary>
+            Create a new Patient record
+            </summary>
+            <param name="request"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="T:PatientAppointmentBackend.Service.Models.NewPatient">
+            <summary>
+            Post body to create a new patient
+            </summary>
+        </member>
+        <member name="P:PatientAppointmentBackend.Service.Models.NewPatient.NhsNumber">
+            <summary>
+            The Patient's unique Nhs Number
+            </summary>
+            <example>1373645350</example>
+        </member>
+        <member name="P:PatientAppointmentBackend.Service.Models.NewPatient.Name">
+            <summary>
+            The Patient's name
+            </summary>
+            <example>Mr John Smith</example>
+        </member>
+        <member name="P:PatientAppointmentBackend.Service.Models.NewPatient.DateOfBirth">
+            <summary>
+            The Patient's Date of Birth
+            </summary>
+            <example>2075-05-22T00:00:00+00:00</example>
+        </member>
+        <member name="P:PatientAppointmentBackend.Service.Models.NewPatient.PostCode">
+            <summary>
+            The Patient's Postcode
+            </summary>
+            <example>LS20 8AX</example>
+        </member>
+        <member name="T:PatientAppointmentBackend.Service.Models.Validators.PostCodeValidationAttribute">
+            <summary>
+            Validates a UK PostCode field
+            </summary>
+        </member>
+        <member name="M:PatientAppointmentBackend.Service.Models.Validators.PostCodeValidationAttribute.#ctor">
+            <summary>
+            Default constructor
+            </summary>
+        </member>
+        <member name="M:PatientAppointmentBackend.Service.Startup.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Configure Services 
+            </summary>
+            <param name="services"></param>
+        </member>
+        <member name="M:PatientAppointmentBackend.Service.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IWebHostEnvironment)">
+            <summary>
+            Configure the Runtime
+            </summary>
+            <param name="app"></param>
+            <param name="env"></param>
+        </member>
+    </members>
+</doc>
