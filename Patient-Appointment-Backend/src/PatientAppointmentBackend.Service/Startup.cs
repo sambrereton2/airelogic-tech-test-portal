@@ -49,6 +49,9 @@ namespace PatientAppointmentBackend.Service
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlite(Configuration.GetConnectionString("PatientAppointmentDb")));
             services.AddTransient<IPatientService, PatientService>();
             services.AddTransient<IAppointmentService, AppointmentService>();
+            services.AddTransient<IAppointmentStateService, AppointmentStateService>();
+
+            services.AddHostedService<HostedServiceManager>();
 
         }
 

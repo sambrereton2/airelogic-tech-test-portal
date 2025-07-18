@@ -145,6 +145,50 @@
             <param name="value"></param>
             <returns></returns>
         </member>
+        <member name="T:PatientAppointmentBackend.Service.Services.AppointmentStateService">
+            <summary>
+            Check the state of booked meetings
+            </summary>
+        </member>
+        <member name="M:PatientAppointmentBackend.Service.Services.AppointmentStateService.#ctor(Microsoft.Extensions.Logging.ILogger{PatientAppointmentBackend.Service.Services.AppointmentStateService},PatientAppointmentBackend.Data.Contexts.ApplicationDbContext)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="logger"></param>
+            <param name="context"></param>
+        </member>
+        <member name="M:PatientAppointmentBackend.Service.Services.AppointmentStateService.CheckForMissedMeetings">
+            <summary>
+            Check the database for missed meetings
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:PatientAppointmentBackend.Service.Services.HostedServiceManager">
+            <summary>
+            Background service to check for missed appointments and update their status
+            </summary>
+        </member>
+        <member name="M:PatientAppointmentBackend.Service.Services.HostedServiceManager.#ctor(Microsoft.Extensions.Logging.ILogger{PatientAppointmentBackend.Service.Services.HostedServiceManager},System.IServiceProvider)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="logger"></param>
+            <param name="serviceProvider"></param>
+        </member>
+        <member name="M:PatientAppointmentBackend.Service.Services.HostedServiceManager.StartUpdates(System.Int32,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="delay">ms delay to first update</param>
+            <param name="interval">minutes between each subsequent update</param>
+            <returns></returns>
+        </member>
+        <member name="M:PatientAppointmentBackend.Service.Services.Interfaces.IAppointmentStateService.CheckForMissedMeetings">
+            <summary>
+            Check the database for missed meetings
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:PatientAppointmentBackend.Service.Services.Interfaces.IPatientService">
             <summary>
             Implement's patient CRUD methods
