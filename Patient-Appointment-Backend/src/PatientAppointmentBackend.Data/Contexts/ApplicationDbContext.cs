@@ -13,17 +13,7 @@ namespace PatientAppointmentBackend.Data.Contexts
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            //var useSqlite = Configuration["UseSqlite"];
-            //if (useSqlite != null)
-            //{
-            //    if(string.Equals(useSqlite, "true", StringComparison.OrdinalIgnoreCase))
-            //    {
-            //        optionsBuilder.UseSqlite(Configuration.GetConnectionString("PatientAppointmentDb"));
-            //        return;
-            //    }
-            //}
-            //// Use In-Memory db
-            //optionsBuilder.UseInMemoryDatabase("TestDb");
+            
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
