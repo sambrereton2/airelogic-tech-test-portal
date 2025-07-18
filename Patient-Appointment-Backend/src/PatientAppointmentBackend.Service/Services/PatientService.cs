@@ -86,7 +86,7 @@ namespace PatientAppointmentBackend.Service.Services
         /// <returns></returns>
         public async Task<PatientModel?> GetPatientAsync(string nhsNumber, CancellationToken cancellationToken)
         {
-            var patient = _context.Patients.First(x => x.NhsNumber == nhsNumber);
+            var patient = _context.Patients.FirstOrDefault(x => x.NhsNumber == nhsNumber);
             if (patient != null)
             {
                 return PatientModelTransformer.From(patient);

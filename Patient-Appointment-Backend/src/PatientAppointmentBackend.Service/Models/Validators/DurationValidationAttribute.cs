@@ -14,17 +14,8 @@ namespace PatientAppointmentBackend.Service.Models.Validators
         }
 
         public override bool IsValid(object? value)
-        {
-            if (value is null)
-            {
-                return false;
-            }
-            string? strValue = Convert.ToString(value);
-            if (string.IsNullOrEmpty(strValue))
-            {
-                return false;
-            }
-            return NhsNumberValidator.Validate(strValue);
+        {            
+            return DurationValidator.Validate(value, out TimeSpan _);
         }
     }
 }

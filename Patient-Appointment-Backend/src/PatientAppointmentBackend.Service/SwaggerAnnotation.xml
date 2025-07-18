@@ -12,6 +12,24 @@
             <param name="cancellationToken"></param>
             <returns>Appointment ID</returns>
         </member>
+        <member name="M:PatientAppointmentBackend.Service.Controllers.AppointmentController.AttendAppointment(PatientAppointmentBackend.Service.Models.AppointmentId,System.Threading.CancellationToken)">
+            <summary>
+            Attend an Appointment
+            </summary>
+            <param name="request"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:PatientAppointmentBackend.Service.Controllers.AppointmentController.CancelAppointment(PatientAppointmentBackend.Service.Models.AppointmentId,System.Threading.CancellationToken)">
+            <summary>
+            Cancel an Appointment
+            </summary>
+            <param name="request"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
         <member name="T:PatientAppointmentBackend.Service.Controllers.PatientController">
             <summary>
             Create and Update Patient information
@@ -40,6 +58,11 @@
             <param name="request"></param>
             <param name="cancellationToken"></param>
             <returns></returns>
+        </member>
+        <member name="P:PatientAppointmentBackend.Service.Models.AppointmentId.Id">
+            <summary>
+            The Id of an appointment
+            </summary>
         </member>
         <member name="P:PatientAppointmentBackend.Service.Models.NewAppointment.Patient">
             <summary>
@@ -145,6 +168,37 @@
             <param name="value"></param>
             <returns></returns>
         </member>
+        <member name="M:PatientAppointmentBackend.Service.Services.AppointmentService.#ctor(Microsoft.Extensions.Logging.ILogger{PatientAppointmentBackend.Service.Services.AppointmentService},PatientAppointmentBackend.Data.Contexts.ApplicationDbContext)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="logger"></param>
+            <param name="context"></param>
+        </member>
+        <member name="M:PatientAppointmentBackend.Service.Services.AppointmentService.CreateAppointment(PatientAppointmentBackend.Service.Models.NewAppointment,System.Threading.CancellationToken)">
+            <summary>
+            Create a new appointment
+            </summary>
+            <param name="newAppointment"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PatientAppointmentBackend.Service.Services.AppointmentService.Attend(PatientAppointmentBackend.Service.Models.AppointmentId,System.Threading.CancellationToken)">
+            <summary>
+            Attend a booked appointment
+            </summary>
+            <param name="appointmentId"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PatientAppointmentBackend.Service.Services.AppointmentService.Cancel(PatientAppointmentBackend.Service.Models.AppointmentId,System.Threading.CancellationToken)">
+            <summary>
+            Cancel a booked appointment
+            </summary>
+            <param name="appointmentId"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
         <member name="T:PatientAppointmentBackend.Service.Services.AppointmentStateService">
             <summary>
             Check the state of booked meetings
@@ -181,6 +235,30 @@
             </summary>
             <param name="delay">ms delay to first update</param>
             <param name="interval">minutes between each subsequent update</param>
+            <returns></returns>
+        </member>
+        <member name="M:PatientAppointmentBackend.Service.Services.Interfaces.IAppointmentService.CreateAppointment(PatientAppointmentBackend.Service.Models.NewAppointment,System.Threading.CancellationToken)">
+            <summary>
+            Create a new appointment
+            </summary>
+            <param name="newAppointment"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PatientAppointmentBackend.Service.Services.Interfaces.IAppointmentService.Attend(PatientAppointmentBackend.Service.Models.AppointmentId,System.Threading.CancellationToken)">
+            <summary>
+            Attend a booked appointment
+            </summary>
+            <param name="appointmentId"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PatientAppointmentBackend.Service.Services.Interfaces.IAppointmentService.Cancel(PatientAppointmentBackend.Service.Models.AppointmentId,System.Threading.CancellationToken)">
+            <summary>
+            Cancel a booked appointment
+            </summary>
+            <param name="appointmentId"></param>
+            <param name="cancellationToken"></param>
             <returns></returns>
         </member>
         <member name="M:PatientAppointmentBackend.Service.Services.Interfaces.IAppointmentStateService.CheckForMissedMeetings">
