@@ -10,7 +10,8 @@ namespace PatientAppointmentBackend.Service.Models
         /// </summary>
         /// <example>1373645350</example>
         [Required]
-        [NhsNumberValidation(ErrorMessage = "Nhs Number Not Valid")]
+        [StringLength(10, ErrorMessage = ResourceKeys.NhsNumberMustBe10, MinimumLength = 10)]
+        [NhsNumberValidation(ErrorMessage = ResourceKeys.NhsNumberInvalid)]
         public string Patient { get; set; }
 
         /// <summary>
@@ -26,7 +27,7 @@ namespace PatientAppointmentBackend.Service.Models
         /// </summary>
         /// <example>15m</example>
         [Required]
-        [DurationValidation(ErrorMessage = "Appointment Duration must be specified in the format 15m")]
+        [DurationValidation(ErrorMessage = ResourceKeys.DurationValidation)]
         public string Duration { get; set; }
 
         /// <summary>

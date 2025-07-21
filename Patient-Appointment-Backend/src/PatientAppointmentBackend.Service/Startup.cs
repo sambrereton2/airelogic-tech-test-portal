@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Localization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using PatientAppointmentBackend.Data.Contexts;
@@ -6,6 +7,7 @@ using PatientAppointmentBackend.Service.Services;
 using PatientAppointmentBackend.Service.Services.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Text.Json;
@@ -35,16 +37,33 @@ namespace PatientAppointmentBackend.Service
         /// <param name="services"></param>
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddLocalization(options => options.ResourcesPath = "Resources");
+            services.Configure<RequestLocalizationOptions>(options =>
+            {
+                var supportedCultures = new[]
+                {
+                    new CultureInfo("en-US"),
+                    new CultureInfo("fr-FR")
+                };
+                options.DefaultRequestCulture = new Microsoft.AspNetCore.Localization.RequestCulture("en-US");
+                options.SupportedCultures = supportedCultures;
+                options.SupportedUICultures = supportedCultures;
+
+            });
+
+
             services.AddControllers().AddJsonOptions(configure => 
             {
                 configure.JsonSerializerOptions.WriteIndented = true;
                 configure.JsonSerializerOptions.PropertyNameCaseInsensitive = true;
                 configure.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.SnakeCaseLower;
-            });
+            }).AddMvcLocalization()
+            .AddDataAnnotationsLocalization();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "PatientAppointmentService", Version = "v1" });
                 c.IncludeXmlComments(Path.Combine(System.AppContext.BaseDirectory, "SwaggerAnnotation.xml"));
+                c.OperationFilter<AcceptLanguageHeaderAttribute>();
             });
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlite(Configuration.GetConnectionString("PatientAppointmentDb")));
             services.AddTransient<IPatientService, PatientService>();
@@ -52,7 +71,7 @@ namespace PatientAppointmentBackend.Service
             services.AddTransient<IAppointmentStateService, AppointmentStateService>();
 
             services.AddHostedService<HostedServiceManager>();
-
+            
         }
 
         /// <summary>
@@ -68,6 +87,7 @@ namespace PatientAppointmentBackend.Service
             });
 
             app.UseRouting();
+            app.UseRequestLocalization();
 
             app.UseEndpoints(endpoints =>
             {

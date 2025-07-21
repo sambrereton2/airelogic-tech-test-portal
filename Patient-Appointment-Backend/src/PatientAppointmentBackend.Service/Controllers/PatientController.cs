@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Localization;
 using PatientAppointmentBackend.Service.Models;
 using PatientAppointmentBackend.Service.Services.Interfaces;
 using PatientAppointmentBackend.Shared.Validators;
@@ -12,12 +13,15 @@ namespace PatientAppointmentBackend.Service.Controllers
     {
         private readonly IPatientService _patientService;
         private readonly ILogger<PatientController> _logger;
+        private readonly IStringLocalizer<PatientController> _stringLocalizer;
 
         public PatientController(IPatientService patientService,
-            ILogger<PatientController> logger)
+            ILogger<PatientController> logger,
+            IStringLocalizer<PatientController> stringLocalizer)
         {
             _patientService = patientService;
             _logger = logger;
+            _stringLocalizer = stringLocalizer;
         }
 
 
@@ -33,7 +37,7 @@ namespace PatientAppointmentBackend.Service.Controllers
         {
             if (!NhsNumberValidator.Validate(id))
             {
-                return BadRequest("Not a valid NhsNumber");
+                return BadRequest(_stringLocalizer[ResourceKeys.NhsNumberInvalid]);
             }
             try
             {
@@ -68,22 +72,21 @@ namespace PatientAppointmentBackend.Service.Controllers
             {
                 throw new ArgumentNullException(nameof(request));
             }
-
-            // Ideally want ModelState validity checking done globally
+                        
             if (!ModelState.IsValid)
-            {                
-                var errors = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage);
-                var responseObj = new { Errors = errors };
+            {               
+                var responseObj = new { Errors = GetModelStateErrors() };
                 return new BadRequestObjectResult(responseObj);
             }
 
             try
             {
                 await _patientService.AddPatientAsync(request, false, cancellationToken);
-                return Ok("Patient Created");
+                return Ok(_stringLocalizer[ResourceKeys.PatientCreated]);
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, "Exception creating a new user");
                 return BadRequest(ex.Message);
             }
         }
@@ -103,23 +106,33 @@ namespace PatientAppointmentBackend.Service.Controllers
                 throw new ArgumentNullException(nameof(request));
             }
 
-            // Ideally want ModelState validity checking done globally
             if (!ModelState.IsValid)
             {
-                var errors = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage);
-                var responseObj = new { Errors = errors };
+                var responseObj = new { Errors = GetModelStateErrors() };
                 return new BadRequestObjectResult(responseObj);
             }
 
             try
             {
                 await _patientService.AddPatientAsync(request, true, cancellationToken);
-                return Ok("Patient Updated");
+                return Ok(_stringLocalizer[ResourceKeys.PatientUpdated]);
             }
             catch (Exception ex)
             {
                 return BadRequest(ex.Message);
             }
+        }
+
+        private List<string> GetModelStateErrors()
+        {
+            List<string> formattedErrors = new List<string>();
+            var errors = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage);
+
+            foreach (var error in errors)
+            {
+                formattedErrors.Add(_stringLocalizer[error]);
+            }
+            return formattedErrors;
         }
     }
 }
